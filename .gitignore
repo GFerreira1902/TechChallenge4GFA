@@ -1,0 +1,29 @@
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+.ipynb_checkpoints/
+.vscode/
+.idea/
+Thumbs.db
+Desktop.ini
+
+# Dados (amostras grandes baixadas de datasets publicos)
+data/samples/*
+!data/samples/**/.gitkeep
+
+# Gerados em runtime
+outputs/*
+!outputs/.gitkeep
+*.pt
+
+# Secrets
+.env
+
+# Arquivos locais (nao entregaveis)
+PROMPT_FASE4.md
+ROTEIRO_VIDEO.md
+LinksEntrega.txt
+docs/*.pdf

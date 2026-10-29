@@ -1,0 +1,109 @@
+{
+  "_aviso": "Prontuários fictícios gerados para fins acadêmicos (Tech Challenge Fase 3). Nomes, dados e históricos são sintéticos e não correspondem a pessoas reais.",
+  "pacientes": [
+    {
+      "paciente_id": "PAC-001",
+      "nome": "Fictício - Paciente 001",
+      "idade": 68,
+      "sexo": "M",
+      "diagnostico_principal": "Dor toracica aguda a esclarecer",
+      "historico": "Hipertenso e diabetico ha 10 anos. Tabagista ativo.",
+      "medicacoes_atuais": ["Losartana 50mg", "Metformina 850mg"],
+      "exames_pendentes": ["Troponina seriada (1h)", "ECG de controle"],
+      "alertas": ["Troponina inicial limitrofe - repetir em 1h"],
+      "alertas_criticos": ["Troponina inicial limitrofe - repetir em 1h"],
+      "protocolos_relevantes": ["PROT-001", "PROT-010"]
+    },
+    {
+      "paciente_id": "PAC-002",
+      "nome": "Fictício - Paciente 002",
+      "idade": 45,
+      "sexo": "F",
+      "diagnostico_principal": "Sepse de foco urinario",
+      "historico": "Sem comorbidades conhecidas.",
+      "medicacoes_atuais": ["Ceftriaxona 1g EV 12/12h"],
+      "exames_pendentes": ["Lactato de controle (2h)", "Hemocultura - resultado pendente"],
+      "alertas": ["Lactato inicial 4.2 mmol/L - paciente em pacote de sepse"],
+      "alertas_criticos": ["Lactato inicial 4.2 mmol/L - paciente em pacote de sepse"],
+      "protocolos_relevantes": ["PROT-002", "PROT-010"]
+    },
+    {
+      "paciente_id": "PAC-003",
+      "nome": "Fictício - Paciente 003",
+      "idade": 72,
+      "sexo": "M",
+      "diagnostico_principal": "Insuficiencia cardiaca descompensada",
+      "historico": "IC com fracao de ejecao reduzida, internacao previa ha 3 meses.",
+      "medicacoes_atuais": ["Furosemida 40mg", "Carvedilol 25mg", "Espironolactona 25mg"],
+      "exames_pendentes": ["Funcao renal e eletrolitos pos-diuretico"],
+      "alertas": [],
+      "alertas_criticos": [],
+      "protocolos_relevantes": ["PROT-011"]
+    },
+    {
+      "paciente_id": "PAC-004",
+      "nome": "Fictício - Paciente 004",
+      "idade": 34,
+      "sexo": "F",
+      "diagnostico_principal": "Suspeita de apendicite aguda",
+      "historico": "Sem comorbidades. Dor em fossa iliaca direita ha 18 horas.",
+      "medicacoes_atuais": [],
+      "exames_pendentes": ["Tomografia de abdome", "Escore de Alvarado - avaliacao cirurgica"],
+      "alertas": ["Leucocitose 15.000/mm3"],
+      "alertas_criticos": [],
+      "protocolos_relevantes": ["PROT-005"]
+    },
+    {
+      "paciente_id": "PAC-005",
+      "nome": "Fictício - Paciente 005",
+      "idade": 80,
+      "sexo": "M",
+      "diagnostico_principal": "Acidente vascular cerebral isquemico",
+      "historico": "Fibrilacao atrial, uso irregular de anticoagulante.",
+      "medicacoes_atuais": ["Varfarina (uso irregular)"],
+      "exames_pendentes": ["Tomografia de controle 24h"],
+      "alertas": ["Janela terapeutica para trombolise expirada - conduta conservadora"],
+      "alertas_criticos": [],
+      "protocolos_relevantes": ["PROT-008"]
+    },
+    {
+      "paciente_id": "PAC-006",
+      "nome": "Fictício - Paciente 006",
+      "idade": 55,
+      "sexo": "F",
+      "diagnostico_principal": "Diabetes descompensada",
+      "historico": "Diabetes tipo 2 ha 15 anos, ma adesao ao tratamento.",
+      "medicacoes_atuais": ["Insulina NPH", "Insulina regular (esquema movel)"],
+      "exames_pendentes": ["Glicemia capilar pre-refeicao"],
+      "alertas": ["Hipoglicemia registrada as 03h (62 mg/dL) - reavaliar esquema"],
+      "alertas_criticos": [],
+      "protocolos_relevantes": ["PROT-004"]
+    },
+    {
+      "paciente_id": "PAC-007",
+      "nome": "Fictício - Paciente 007",
+      "idade": 29,
+      "sexo": "M",
+      "diagnostico_principal": "Pos-operatorio de apendicectomia",
+      "historico": "Sem comorbidades. Cirurgia sem intercorrencias ha 2 dias.",
+      "medicacoes_atuais": ["Dipirona 1g", "Cefalexina 500mg"],
+      "exames_pendentes": [],
+      "alertas": ["Apto para avaliacao de alta - reconciliacao medicamentosa pendente"],
+      "alertas_criticos": [],
+      "protocolos_relevantes": ["PROT-006"]
+    },
+    {
+      "paciente_id": "PAC-008",
+      "nome": "Fictício - Paciente 008",
+      "idade": 61,
+      "sexo": "F",
+      "diagnostico_principal": "Hipertensao arterial - emergencia hipertensiva",
+      "historico": "Hipertensa ha 20 anos, abandono de tratamento nos ultimos 3 meses.",
+      "medicacoes_atuais": ["Nitroprussiato de sodio EV"],
+      "exames_pendentes": ["Funcao renal seriada"],
+      "alertas": ["PA de admissao 220x130 mmHg - risco de lesao de orgao-alvo"],
+      "alertas_criticos": ["PA de admissao 220x130 mmHg - risco de lesao de orgao-alvo"],
+      "protocolos_relevantes": ["PROT-003", "PROT-010"]
+    }
+  ]
+}

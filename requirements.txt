@@ -1,0 +1,36 @@
+# Dados e anomalias
+numpy>=1.26.4
+pandas>=2.2.2
+scikit-learn>=1.5.0
+scipy>=1.13.0
+
+# Video (YOLOv8 / pose) - torch com CUDA: pip install torch --index-url https://download.pytorch.org/whl/cu124
+opencv-python>=4.9.0
+ultralytics>=8.2.0
+torch>=2.3.0
+
+# Audio
+librosa>=0.10.2
+soundfile>=0.12.1
+
+# Azure (Speech e AI Language)
+azure-cognitiveservices-speech>=1.38.0
+azure-ai-textanalytics>=5.3.0
+
+# Orquestracao
+langgraph>=0.2.0
+langchain-core>=0.2.0
+
+# Interface e visualizacao
+streamlit>=1.36.0
+matplotlib>=3.9.0
+plotly>=5.22.0
+
+# Utilitarios
+reportlab>=4.0.0
+python-dotenv>=1.0.1
+groq>=0.8.0
+
+# Testes
+pytest>=8.2.2
+pytest-mock>=3.14.0
