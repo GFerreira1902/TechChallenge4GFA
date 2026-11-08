@@ -23,6 +23,9 @@ LIMITES = {
     "spo2": (92, 100),
 }
 EXTREMOS = {"fc": (40, 150), "pa_sist": (80, 190), "spo2": (88, 101)}
+# piso da escala robusta (MAD) e desvio absoluto minimo para contar como abrupto
+ESCALA_MIN = {"fc": 2.0, "pa_sist": 3.0, "spo2": 0.6}
+DESVIO_MIN = {"fc": 10.0, "pa_sist": 15.0, "spo2": 2.5}
 
 
 def gerar_serie_sintetica(
@@ -84,13 +87,14 @@ def detectar_vitais(
         base = df[c].shift(1).rolling(janela, min_periods=max(5, janela // 3))
         med = base.median()
         mad = base.apply(lambda x: np.median(np.abs(x - np.median(x))), raw=True) * 1.4826
-        z = (df[c] - med) / mad.clip(lower=df[c].std() * 0.25 + 1e-6)
+        desvio = df[c] - med
+        z = desvio / mad.clip(lower=ESCALA_MIN[c])
         for i, v in df[c].items():
             if pd.isna(v):
                 continue
             if v < lo or v > hi:
                 motivos[i].append(f"{c}={v:.0f} fora da faixa {lo}-{hi}")
-            elif abs(z.iloc[i]) > z_limite:
+            elif abs(z.iloc[i]) > z_limite and abs(desvio.iloc[i]) >= DESVIO_MIN[c]:
                 motivos[i].append(f"{c} desvio abrupto (z={z.iloc[i]:.1f})")
 
     X = df[cols].interpolate().bfill().ffill().to_numpy()
