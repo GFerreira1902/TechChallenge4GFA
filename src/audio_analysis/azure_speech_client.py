@@ -58,9 +58,11 @@ class AzureSpeechClient:
 
     def _transcrever_azure(self, audio_path: str) -> Transcricao:
         """Reconhecimento continuo (audios > 15 s) via SDK; concatena os segmentos."""
+        tmp = None
         try:
             import azure.cognitiveservices.speech as speechsdk
 
+            audio_path, tmp = _preparar_wav(audio_path)
             cfg = speechsdk.SpeechConfig(subscription=self.api_key, region=self.region)
             cfg.speech_recognition_language = self.language
             cfg.output_format = speechsdk.OutputFormat.Detailed
@@ -98,6 +100,7 @@ class AzureSpeechClient:
             while not done and time.time() - t0 < 300:
                 time.sleep(0.2)
             rec.stop_continuous_recognition()
+            del rec, audio
 
             texto = " ".join(s["texto"] for s in segmentos).strip()
             dur = (segmentos[-1]["offset_s"] + segmentos[-1]["duracao_s"]) if segmentos else None
@@ -105,3 +108,31 @@ class AzureSpeechClient:
                                erro=erros[0] if erros else None, segmentos=segmentos)
         except Exception as exc:  # nunca derruba o fluxo
             return Transcricao("", self.language, None, None, simulado=False, erro=str(exc))
+        finally:
+            if tmp and os.path.exists(tmp):
+                try:
+                    os.remove(tmp)
+                except OSError:
+                    pass  # SDK pode manter handle aberto no Windows; o SO limpa o temp
+
+
+def _preparar_wav(audio_path: str) -> tuple[str, Optional[str]]:
+    """O SDK exige WAV PCM; converte mp3/ogg/etc. (e reamostra) para WAV 16 kHz mono temporario."""
+    import soundfile as sf
+
+    if audio_path.lower().endswith(".wav"):
+        try:
+            info = sf.info(audio_path)
+            if info.samplerate == 16000 and info.channels == 1 and info.subtype == "PCM_16":
+                return audio_path, None
+        except Exception:
+            pass
+    import tempfile
+
+    import librosa
+
+    y, _ = librosa.load(audio_path, sr=16000, mono=True)
+    fd, tmp = tempfile.mkstemp(suffix=".wav")
+    os.close(fd)
+    sf.write(tmp, y, 16000, subtype="PCM_16")
+    return tmp, tmp

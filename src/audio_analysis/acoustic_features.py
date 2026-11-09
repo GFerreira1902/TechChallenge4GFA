@@ -56,7 +56,8 @@ def extrair_atributos(y: np.ndarray, sr: int = SR) -> AtributosAcusticos:
     rms_v = rms[rms > np.percentile(rms, 30)]
     shimmer = float(np.mean(np.abs(np.diff(rms_v))) / np.mean(rms_v)) if len(rms_v) > 2 else 0.0
 
-    limiar = max(0.02 * np.max(rms), np.percentile(rms, 20), 1e-5)
+    # pausa = energia abaixo de 10% do nivel tipico de fala (p90), com piso absoluto
+    limiar = max(0.1 * np.percentile(rms, 90), 1e-4)
     pausas = float(np.mean(rms <= limiar))
 
     onset_env = librosa.onset.onset_strength(y=y, sr=sr, hop_length=256).astype(np.float64)

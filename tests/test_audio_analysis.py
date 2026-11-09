@@ -101,3 +101,29 @@ def test_audio_analyzer_sem_fala_nao_transcreve(logger, wav_tom, mocker):
     laudo = an.analisar(wav_tom, "PAC-001", contem_fala=False)
     speech.transcrever.assert_not_called()
     assert laudo.transcricao == "" and laudo.termos_criticos == []
+
+
+def test_dyspnea_model_disponivel_e_prob_valida(wav_tom):
+    from src.audio_analysis.dyspnea_model import DyspneaModel, FEATURES, extrair_prosodia
+    y, sr = af.carregar_audio(wav_tom)
+    f = extrair_prosodia(y, sr)
+    assert set(FEATURES) <= set(f)
+    m = DyspneaModel()
+    assert m.disponivel
+    p = m.prever(y, sr)
+    assert 0.0 <= p <= 1.0
+
+
+def test_dyspnea_model_ausente_retorna_none(tmp_path, wav_tom):
+    from src.audio_analysis.dyspnea_model import DyspneaModel
+    m = DyspneaModel(model_path=str(tmp_path / "nao_existe.joblib"))
+    assert not m.disponivel and m.prever(np.zeros(16000), 16000) is None
+
+
+def test_audio_analyzer_alerta_dispneia(logger, wav_tom, mocker):
+    dm = mocker.Mock(); dm.prever.return_value = 0.9
+    an = AudioAnalyzer(speech_client=mocker.Mock(), language_client=mocker.Mock(), audit_logger=logger,
+                       transcrever=False, dyspnea_model=dm)
+    laudo = an.analisar(wav_tom, "PAC-003")
+    assert laudo.prob_dispneia == 0.9
+    assert any("dificuldade respiratoria" in a.evidencia and a.severidade == "alta" for a in laudo.alertas)
