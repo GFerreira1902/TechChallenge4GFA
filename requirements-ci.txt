@@ -1,0 +1,5 @@
+# Dependencias para CI (GitHub Actions): torch CPU para evitar os ~2.5 GB da build CUDA.
+# Local/GPU: use requirements.txt + torch cu124 (ver README).
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch>=2.3.0
+-r requirements.txt

@@ -29,3 +29,6 @@ LinksEntrega.txt
 docs/*.pdf
 
 !data/samples/README.md
+
+# Pesos YOLO (baixados automaticamente pelo ultralytics)
+models/*.pt
