@@ -8,6 +8,7 @@ scipy>=1.13.0
 opencv-python>=4.9.0
 ultralytics>=8.2.0
 torch>=2.3.0
+imageio-ffmpeg>=0.5.0
 
 # Audio
 librosa>=0.10.2

@@ -53,11 +53,29 @@ def video() -> None:
             zf.extractall(folder)
         frames = sorted(glob.glob(os.path.join(folder, "**", "*.png"), recursive=True))
         h, w = cv2.imread(frames[0]).shape[:2]
-        out = cv2.VideoWriter(mp4, cv2.VideoWriter_fourcc(*"mp4v"), 30, (w, h))
+        raw = mp4 + ".raw.mp4"
+        out = cv2.VideoWriter(raw, cv2.VideoWriter_fourcc(*"mp4v"), 30, (w, h))
         for f in frames:
             out.write(cv2.imread(f))
         out.release()
+        _para_h264(raw, mp4)
         print(f"[video] {seq}.mp4 ({len(frames)} frames)")
+
+
+def _para_h264(origem: str, destino: str) -> None:
+    """Reencoda para H.264 (reproduzivel no navegador/Streamlit); mantem mp4v se nao houver ffmpeg."""
+    try:
+        import subprocess
+
+        import imageio_ffmpeg
+
+        ff = imageio_ffmpeg.get_ffmpeg_exe()
+        subprocess.run([ff, "-y", "-loglevel", "error", "-i", origem, "-c:v", "libx264", "-pix_fmt", "yuv420p",
+                        "-movflags", "+faststart", destino], check=True)
+        os.remove(origem)
+    except Exception as exc:
+        print("[aviso] sem ffmpeg, mantendo mp4v:", exc)
+        os.replace(origem, destino)
 
 
 if __name__ == "__main__":
