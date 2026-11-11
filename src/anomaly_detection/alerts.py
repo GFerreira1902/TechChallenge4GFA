@@ -7,7 +7,7 @@ from datetime import datetime
 from src.guardrails.safety_rules import enforce_human_validation
 
 SEVERIDADES = ("baixa", "media", "alta", "critica")
-_PESO = {"baixa": 1, "media": 2, "alta": 4, "critica": 8}
+_PESO = {"baixa": 1, "media": 2, "alta": 4, "critica": 12}  # 1 alerta critico isolado ja e nivel critico
 
 
 @dataclass

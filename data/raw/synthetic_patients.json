@@ -1,5 +1,5 @@
 {
-  "_aviso": "Prontuários fictícios gerados para fins acadêmicos (Tech Challenge Fase 3). Nomes, dados e históricos são sintéticos e não correspondem a pessoas reais.",
+  "_aviso": "Prontuarios ficticios gerados para fins academicos (Tech Challenge Fases 3 e 4). Nomes, dados e historicos sao sinteticos e nao correspondem a pessoas reais. Os arquivos de midia referenciados em 'monitoramento' vem de datasets publicos (SPIRA, Common Voice, ESC-50, UR Fall) e sao usados apenas como exemplos de modalidade.",
   "pacientes": [
     {
       "paciente_id": "PAC-001",
@@ -8,11 +8,56 @@
       "sexo": "M",
       "diagnostico_principal": "Dor toracica aguda a esclarecer",
       "historico": "Hipertenso e diabetico ha 10 anos. Tabagista ativo.",
-      "medicacoes_atuais": ["Losartana 50mg", "Metformina 850mg"],
-      "exames_pendentes": ["Troponina seriada (1h)", "ECG de controle"],
-      "alertas": ["Troponina inicial limitrofe - repetir em 1h"],
-      "alertas_criticos": ["Troponina inicial limitrofe - repetir em 1h"],
-      "protocolos_relevantes": ["PROT-001", "PROT-010"]
+      "medicacoes_atuais": [
+        "Losartana 50mg",
+        "Metformina 850mg"
+      ],
+      "exames_pendentes": [
+        "Troponina seriada (1h)",
+        "ECG de controle"
+      ],
+      "alertas": [
+        "Troponina inicial limitrofe - repetir em 1h"
+      ],
+      "alertas_criticos": [
+        "Troponina inicial limitrofe - repetir em 1h"
+      ],
+      "protocolos_relevantes": [
+        "PROT-001",
+        "PROT-010"
+      ],
+      "monitoramento": {
+        "cenario": "Evento agudo: relato de dor toracica em consulta; vitais estaveis ate pico tardio de FC.",
+        "sinais_vitais": {
+          "fonte": "sintetico",
+          "seed": 11,
+          "anomalias": true
+        },
+        "historico_prescricoes": [
+          {
+            "data": "2026-01-01",
+            "medicamento": "Losartana",
+            "dose": "50mg"
+          },
+          {
+            "data": "2026-01-02",
+            "medicamento": "Losartana",
+            "dose": "50mg"
+          },
+          {
+            "data": "2026-01-02",
+            "medicamento": "AAS",
+            "dose": "100mg"
+          }
+        ],
+        "audio": {
+          "arquivo": "data/samples/audio/spira/pacientes/PTT-20200611-WA0003.wav",
+          "contem_fala": true,
+          "fonte": "SPIRA (paciente, PT-BR)",
+          "nota": "Exemplo do split de teste do SPIRA classificado corretamente pelo modelo (ver relatorio: 22/54 pacientes com p>=0.7)."
+        },
+        "video": null
+      }
     },
     {
       "paciente_id": "PAC-002",
@@ -21,11 +66,60 @@
       "sexo": "F",
       "diagnostico_principal": "Sepse de foco urinario",
       "historico": "Sem comorbidades conhecidas.",
-      "medicacoes_atuais": ["Ceftriaxona 1g EV 12/12h"],
-      "exames_pendentes": ["Lactato de controle (2h)", "Hemocultura - resultado pendente"],
-      "alertas": ["Lactato inicial 4.2 mmol/L - paciente em pacote de sepse"],
-      "alertas_criticos": ["Lactato inicial 4.2 mmol/L - paciente em pacote de sepse"],
-      "protocolos_relevantes": ["PROT-002", "PROT-010"]
+      "medicacoes_atuais": [
+        "Ceftriaxona 1g EV 12/12h"
+      ],
+      "exames_pendentes": [
+        "Lactato de controle (2h)",
+        "Hemocultura - resultado pendente"
+      ],
+      "alertas": [
+        "Lactato inicial 4.2 mmol/L - paciente em pacote de sepse"
+      ],
+      "alertas_criticos": [
+        "Lactato inicial 4.2 mmol/L - paciente em pacote de sepse"
+      ],
+      "protocolos_relevantes": [
+        "PROT-002",
+        "PROT-010"
+      ],
+      "monitoramento": {
+        "cenario": "Deterioracao sistemica (sepse): PA cai e FC sobe; troca de antibiotico; fala lenta.",
+        "sinais_vitais": {
+          "fonte": "sintetico",
+          "seed": 22,
+          "anomalias": true
+        },
+        "historico_prescricoes": [
+          {
+            "data": "2026-01-01",
+            "medicamento": "Ceftriaxona",
+            "dose": "1g"
+          },
+          {
+            "data": "2026-01-02",
+            "medicamento": "Ceftriaxona",
+            "dose": "1g"
+          },
+          {
+            "data": "2026-01-03",
+            "medicamento": "Ceftriaxona",
+            "dose": "0mg"
+          },
+          {
+            "data": "2026-01-03",
+            "medicamento": "Meropenem",
+            "dose": "1g"
+          }
+        ],
+        "audio": {
+          "arquivo": "data/samples/audio/spira/pacientes/PTT-20200606-WA0007.wav",
+          "contem_fala": true,
+          "fonte": "SPIRA (paciente, PT-BR)",
+          "nota": "Exemplo do split de teste do SPIRA classificado corretamente pelo modelo (ver relatorio: 22/54 pacientes com p>=0.7)."
+        },
+        "video": null
+      }
     },
     {
       "paciente_id": "PAC-003",
@@ -34,11 +128,64 @@
       "sexo": "M",
       "diagnostico_principal": "Insuficiencia cardiaca descompensada",
       "historico": "IC com fracao de ejecao reduzida, internacao previa ha 3 meses.",
-      "medicacoes_atuais": ["Furosemida 40mg", "Carvedilol 25mg", "Espironolactona 25mg"],
-      "exames_pendentes": ["Funcao renal e eletrolitos pos-diuretico"],
+      "medicacoes_atuais": [
+        "Furosemida 40mg",
+        "Carvedilol 25mg",
+        "Espironolactona 25mg"
+      ],
+      "exames_pendentes": [
+        "Funcao renal e eletrolitos pos-diuretico"
+      ],
       "alertas": [],
       "alertas_criticos": [],
-      "protocolos_relevantes": ["PROT-011"]
+      "protocolos_relevantes": [
+        "PROT-011"
+      ],
+      "monitoramento": {
+        "cenario": "CASO PRINCIPAL - IC descompensada: SpO2 em queda, FC em alta, furosemida x4, fala com dispneia e tosse, imobilidade no leito.",
+        "sinais_vitais": {
+          "fonte": "sintetico",
+          "seed": 33,
+          "anomalias": true
+        },
+        "historico_prescricoes": [
+          {
+            "data": "2026-01-01",
+            "medicamento": "Furosemida",
+            "dose": "40mg"
+          },
+          {
+            "data": "2026-01-01",
+            "medicamento": "Carvedilol",
+            "dose": "25mg"
+          },
+          {
+            "data": "2026-01-02",
+            "medicamento": "Furosemida",
+            "dose": "160mg"
+          },
+          {
+            "data": "2026-01-02",
+            "medicamento": "Carvedilol",
+            "dose": "25mg"
+          }
+        ],
+        "audio": {
+          "arquivo": "data/samples/audio/spira/pacientes/PTT-20200601-WA0001.wav",
+          "contem_fala": true,
+          "fonte": "SPIRA (paciente, PT-BR)",
+          "nota": "Exemplo do split de teste do SPIRA classificado corretamente pelo modelo (ver relatorio: 22/54 pacientes com p>=0.7)."
+        },
+        "audio_extra": {
+          "arquivo": "data/samples/audio/esc50/1-53663-A-24.wav",
+          "contem_fala": false,
+          "fonte": "ESC-50 (tosse)"
+        },
+        "video": {
+          "arquivo": "data/samples/video/adl-05.mp4",
+          "fonte": "UR Fall (ADL - deita no leito)"
+        }
+      }
     },
     {
       "paciente_id": "PAC-004",
@@ -48,10 +195,31 @@
       "diagnostico_principal": "Suspeita de apendicite aguda",
       "historico": "Sem comorbidades. Dor em fossa iliaca direita ha 18 horas.",
       "medicacoes_atuais": [],
-      "exames_pendentes": ["Tomografia de abdome", "Escore de Alvarado - avaliacao cirurgica"],
-      "alertas": ["Leucocitose 15.000/mm3"],
+      "exames_pendentes": [
+        "Tomografia de abdome",
+        "Escore de Alvarado - avaliacao cirurgica"
+      ],
+      "alertas": [
+        "Leucocitose 15.000/mm3"
+      ],
       "alertas_criticos": [],
-      "protocolos_relevantes": ["PROT-005"]
+      "protocolos_relevantes": [
+        "PROT-005"
+      ],
+      "monitoramento": {
+        "cenario": "Queda no quarto detectada por video; vitais normais ate o evento.",
+        "sinais_vitais": {
+          "fonte": "sintetico",
+          "seed": 44,
+          "anomalias": false
+        },
+        "historico_prescricoes": [],
+        "audio": null,
+        "video": {
+          "arquivo": "data/samples/video/fall-01.mp4",
+          "fonte": "UR Fall (queda)"
+        }
+      }
     },
     {
       "paciente_id": "PAC-005",
@@ -60,11 +228,47 @@
       "sexo": "M",
       "diagnostico_principal": "Acidente vascular cerebral isquemico",
       "historico": "Fibrilacao atrial, uso irregular de anticoagulante.",
-      "medicacoes_atuais": ["Varfarina (uso irregular)"],
-      "exames_pendentes": ["Tomografia de controle 24h"],
-      "alertas": ["Janela terapeutica para trombolise expirada - conduta conservadora"],
+      "medicacoes_atuais": [
+        "Varfarina (uso irregular)"
+      ],
+      "exames_pendentes": [
+        "Tomografia de controle 24h"
+      ],
+      "alertas": [
+        "Janela terapeutica para trombolise expirada - conduta conservadora"
+      ],
       "alertas_criticos": [],
-      "protocolos_relevantes": ["PROT-008"]
+      "protocolos_relevantes": [
+        "PROT-008"
+      ],
+      "monitoramento": {
+        "cenario": "Controle: idoso estavel; voz saudavel (Common Voice), atividade normal, vitais BIDMC reais.",
+        "sinais_vitais": {
+          "fonte": "bidmc",
+          "arquivo": "data/samples/vitals/bidmc_01_Numerics.csv"
+        },
+        "historico_prescricoes": [
+          {
+            "data": "2026-01-01",
+            "medicamento": "Varfarina",
+            "dose": "5mg"
+          },
+          {
+            "data": "2026-01-02",
+            "medicamento": "Varfarina",
+            "dose": "5mg"
+          }
+        ],
+        "audio": {
+          "arquivo": "data/samples/audio/commonvoice/clips/common_voice_pt_19916265.mp3",
+          "contem_fala": true,
+          "fonte": "Common Voice PT (70+ anos)"
+        },
+        "video": {
+          "arquivo": "data/samples/video/adl-01.mp4",
+          "fonte": "UR Fall (ADL - normal)"
+        }
+      }
     },
     {
       "paciente_id": "PAC-006",
@@ -73,11 +277,20 @@
       "sexo": "F",
       "diagnostico_principal": "Diabetes descompensada",
       "historico": "Diabetes tipo 2 ha 15 anos, ma adesao ao tratamento.",
-      "medicacoes_atuais": ["Insulina NPH", "Insulina regular (esquema movel)"],
-      "exames_pendentes": ["Glicemia capilar pre-refeicao"],
-      "alertas": ["Hipoglicemia registrada as 03h (62 mg/dL) - reavaliar esquema"],
+      "medicacoes_atuais": [
+        "Insulina NPH",
+        "Insulina regular (esquema movel)"
+      ],
+      "exames_pendentes": [
+        "Glicemia capilar pre-refeicao"
+      ],
+      "alertas": [
+        "Hipoglicemia registrada as 03h (62 mg/dL) - reavaliar esquema"
+      ],
       "alertas_criticos": [],
-      "protocolos_relevantes": ["PROT-004"]
+      "protocolos_relevantes": [
+        "PROT-004"
+      ]
     },
     {
       "paciente_id": "PAC-007",
@@ -86,11 +299,18 @@
       "sexo": "M",
       "diagnostico_principal": "Pos-operatorio de apendicectomia",
       "historico": "Sem comorbidades. Cirurgia sem intercorrencias ha 2 dias.",
-      "medicacoes_atuais": ["Dipirona 1g", "Cefalexina 500mg"],
+      "medicacoes_atuais": [
+        "Dipirona 1g",
+        "Cefalexina 500mg"
+      ],
       "exames_pendentes": [],
-      "alertas": ["Apto para avaliacao de alta - reconciliacao medicamentosa pendente"],
+      "alertas": [
+        "Apto para avaliacao de alta - reconciliacao medicamentosa pendente"
+      ],
       "alertas_criticos": [],
-      "protocolos_relevantes": ["PROT-006"]
+      "protocolos_relevantes": [
+        "PROT-006"
+      ]
     },
     {
       "paciente_id": "PAC-008",
@@ -99,11 +319,22 @@
       "sexo": "F",
       "diagnostico_principal": "Hipertensao arterial - emergencia hipertensiva",
       "historico": "Hipertensa ha 20 anos, abandono de tratamento nos ultimos 3 meses.",
-      "medicacoes_atuais": ["Nitroprussiato de sodio EV"],
-      "exames_pendentes": ["Funcao renal seriada"],
-      "alertas": ["PA de admissao 220x130 mmHg - risco de lesao de orgao-alvo"],
-      "alertas_criticos": ["PA de admissao 220x130 mmHg - risco de lesao de orgao-alvo"],
-      "protocolos_relevantes": ["PROT-003", "PROT-010"]
+      "medicacoes_atuais": [
+        "Nitroprussiato de sodio EV"
+      ],
+      "exames_pendentes": [
+        "Funcao renal seriada"
+      ],
+      "alertas": [
+        "PA de admissao 220x130 mmHg - risco de lesao de orgao-alvo"
+      ],
+      "alertas_criticos": [
+        "PA de admissao 220x130 mmHg - risco de lesao de orgao-alvo"
+      ],
+      "protocolos_relevantes": [
+        "PROT-003",
+        "PROT-010"
+      ]
     }
   ]
 }
