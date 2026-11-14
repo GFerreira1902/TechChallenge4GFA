@@ -69,7 +69,7 @@ with st.sidebar:
     st.caption("Dados ficticios (PAC-00X) + amostras publicas reais: SPIRA, Common Voice, ESC-50, UR Fall, PhysioNet BIDMC.")
 
 # ------------------------------------------------------------------ cabecalho
-c1, c2, c3 = st.columns([3, 1, 1])
+c1, c2, c3 = st.columns([3, 1.1, 1.3])
 c1.subheader(f"{pid} - {pac['nome']} ({pac['idade']} anos, {pac['sexo']})")
 c1.write(f"**Diagnostico:** {pac['diagnostico_principal']}  |  **Historico:** {pac['historico']}")
 c1.write(f"**Medicacoes:** {', '.join(pac['medicacoes_atuais']) or 'nenhuma'}")
