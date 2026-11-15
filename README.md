@@ -7,12 +7,12 @@ Guilherme Ferreira de Arruda · RM 373210 · Grupo 88
 
 Protótipo de um sistema hospitalar que acompanha pacientes internados combinando **vídeo** (câmera do quarto ou sessão de fisioterapia), **voz** (gravações de consulta) e **dados clínicos** (sinais vitais e prescrições). Cada fonte é analisada por um modelo específico; as evidências são fundidas em um **score de risco** e, quando necessário, um **alerta é emitido para a equipe médica** — sempre com aviso de validação humana e registro de auditoria.
 
-| Entregável | Onde |
-|---|---|
-| Código-fonte | este repositório |
+| Entregável                                                 | Onde                                                   |
+| ---------------------------------------------------------- | ------------------------------------------------------ |
+| Código-fonte                                               | este repositório                                       |
 | Relatório técnico (fluxo, modelos, resultados, limitações) | [docs/relatorio_tecnico.md](docs/relatorio_tecnico.md) |
-| Diagramas do fluxo multimodal | [docs/diagrama_fluxo.md](docs/diagrama_fluxo.md) |
-| Vídeo de demonstração (≤ 15 min) | _link será adicionado na entrega_ |
+| Diagramas do fluxo multimodal                              | [docs/diagrama_fluxo.md](docs/diagrama_fluxo.md)       |
+| Vídeo de demonstração (≤ 15 min)                           | _link será adicionado na entrega_                      |
 
 ---
 
@@ -26,12 +26,12 @@ Protótipo de um sistema hospitalar que acompanha pacientes internados combinand
  prescrições► regras de salto/suspensão de dose ───────────────────────────────────────────────────────────┘
 ```
 
-| Requisito do enunciado | Como foi atendido |
-|---|---|
-| Analisar vídeos clínicos com OpenPose / YOLOv8 e gerar relatórios de desvios | YOLOv8n + YOLOv8n-pose (equivalente funcional ao OpenPose, 17 pontos do corpo). Detecta queda, postura anômala, imobilidade e entrada em área crítica. Gera **PDF** com linha do tempo e quadros anotados. |
+| Requisito do enunciado                                                                                                        | Como foi atendido                                                                                                                                                                                                                                       |
+| ----------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Analisar vídeos clínicos com OpenPose / YOLOv8 e gerar relatórios de desvios                                                  | YOLOv8n + YOLOv8n-pose (equivalente funcional ao OpenPose, 17 pontos do corpo). Detecta queda, postura anômala, imobilidade e entrada em área crítica. Gera **PDF** com linha do tempo e quadros anotados.                                              |
 | Transcrever áudio com Azure Speech to Text; detectar alterações vocais; termos críticos e sentimento com Azure Text Analytics | Transcrição pt-BR real; sentimento, frases-chave e entidades via Azure AI Language; lista própria de termos críticos em 3 níveis; medidas acústicas (librosa); **modelo de dificuldade respiratória** treinado em 432 áudios reais do SPIRA (AUC 0,82). |
-| Anomalias em sinais vitais, prescrições e movimentação; alertas automáticos | Três detectores combinados para FC/PA/SpO2, regras de dose, trajetória do paciente extraída do vídeo. Alerta auditado com disclaimer obrigatório. |
-| Fusão multimodal e integração com nuvem | Grafo LangGraph com estado compartilhado e score consolidado; clientes Azure com **mock mode** (funciona sem chave). |
+| Anomalias em sinais vitais, prescrições e movimentação; alertas automáticos                                                   | Três detectores combinados para FC/PA/SpO2, regras de dose, trajetória do paciente extraída do vídeo. Alerta auditado com disclaimer obrigatório.                                                                                                       |
+| Fusão multimodal e integração com nuvem                                                                                       | Grafo LangGraph com estado compartilhado e score consolidado; clientes Azure com **mock mode** (funciona sem chave).                                                                                                                                    |
 
 Resultados nos dados reais: 2/2 quedas detectadas e 0 falsos positivos em atividades normais (UR Fall); transcrição idêntica à referência (Common Voice); AUC 0,82 em dispneia (SPIRA, split de teste); recall 94% com 0 falsos positivos em vitais sintéticos e 0 alertas indevidos em pacientes reais estáveis (PhysioNet BIDMC). Detalhes no [relatório](docs/relatorio_tecnico.md).
 
@@ -41,13 +41,13 @@ Resultados nos dados reais: 2/2 quedas detectadas e 0 falsos positivos em ativid
 
 ### 2.1 Pré-requisitos
 
-| Item | Versão | Observação |
-|---|---|---|
-| Python | **3.11** | testado em 3.11.1 (Windows 11) |
-| Git | qualquer | |
-| GPU NVIDIA | opcional | acelera o YOLO (~40 ms/quadro na GTX 1650). Sem GPU roda em CPU (~0,5 s/quadro) |
-| Conta Azure | opcional | recursos **Speech** e **Language** no tier gratuito F0. Sem chaves o sistema roda em **mock mode** |
-| Espaço em disco | ~4 GB | venv com torch (2,5 GB CUDA ou 200 MB CPU) + amostras (~400 MB) |
+| Item            | Versão   | Observação                                                                                         |
+| --------------- | -------- | -------------------------------------------------------------------------------------------------- |
+| Python          | **3.11** | testado em 3.11.1 (Windows 11)                                                                     |
+| Git             | qualquer |                                                                                                    |
+| GPU NVIDIA      | opcional | acelera o YOLO (~40 ms/quadro na GTX 1650). Sem GPU roda em CPU (~0,5 s/quadro)                    |
+| Conta Azure     | opcional | recursos **Speech** e **Language** no tier gratuito F0. Sem chaves o sistema roda em **mock mode** |
+| Espaço em disco | ~4 GB    | venv com torch (2,5 GB CUDA ou 200 MB CPU) + amostras (~400 MB)                                    |
 
 ### 2.2 Instalação (Windows / PowerShell)
 
@@ -81,7 +81,7 @@ AZURE_LANGUAGE_KEY=<chave do recurso Language>
 AZURE_LANGUAGE_ENDPOINT=https://<nome-do-recurso>.cognitiveservices.azure.com/
 ```
 
-Como obter: portal Azure → *Criar recurso* → **Speech** (tier F0) e **Language** (tier F0) → em cada um, *Chaves e Ponto de Extremidade*. O endpoint do Language deve ser o personalizado do recurso (`https://<nome>.cognitiveservices.azure.com/`), não o regional genérico.
+Como obter: portal Azure → _Criar recurso_ → **Speech** (tier F0) e **Language** (tier F0) → em cada um, _Chaves e Ponto de Extremidade_. O endpoint do Language deve ser o personalizado do recurso (`https://<nome>.cognitiveservices.azure.com/`), não o regional genérico.
 
 Sem o `.env` tudo funciona: transcrição e sentimento voltam simulados e a auditoria marca `simulated: true`. O dashboard mostra na barra lateral se cada serviço está em modo REAL ou SIMULADO.
 
@@ -95,10 +95,10 @@ Baixa automaticamente (~150 MB): sinais vitais reais do **PhysioNet BIDMC**, 44 
 
 Dois conjuntos exigem download manual (login) e são **opcionais** — sem eles, os pacientes PAC-001/002/003 rodam sem a etapa de áudio e o PAC-005 sem voz:
 
-| Dataset | Para quê | Como obter | Onde colocar |
-|---|---|---|---|
-| **SPIRA** (USP) | voz real de pacientes com falta de ar, pt-BR | link do Google Drive em https://github.com/Edresson/SPIRA-ACL2021 → extrair | `data/samples/audio/spira/` (pastas `pacientes/`, `controle/` e os `metadata_*.csv`) |
-| **Common Voice PT** | voz saudável de referência | https://commonvoice.mozilla.org/pt/datasets → 22 clipes listados em `data/samples/audio/commonvoice/selecao.csv` | `data/samples/audio/commonvoice/clips/` |
+| Dataset             | Para quê                                     | Como obter                                                                                                       | Onde colocar                                                                         |
+| ------------------- | -------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| **SPIRA** (USP)     | voz real de pacientes com falta de ar, pt-BR | link do Google Drive em https://github.com/Edresson/SPIRA-ACL2021 → extrair                                      | `data/samples/audio/spira/` (pastas `pacientes/`, `controle/` e os `metadata_*.csv`) |
+| **Common Voice PT** | voz saudável de referência                   | https://commonvoice.mozilla.org/pt/datasets → 22 clipes listados em `data/samples/audio/commonvoice/selecao.csv` | `data/samples/audio/commonvoice/clips/`                                              |
 
 Detalhes, licenças e citações em [data/samples/README.md](data/samples/README.md).
 
@@ -130,7 +130,7 @@ Executa, em sequência, os quatro blocos do enunciado para o paciente escolhido:
 streamlit run src/dashboard/app.py
 ```
 
-Abre em `http://localhost:8501`. Escolha o paciente na barra lateral e clique **Rodar fluxo completo** (10–15 s). Abas: *Alertas*, *Sinais vitais* (com botão **Simular stream** que mostra o alerta surgindo conforme os dados chegam), *Áudio* (player, transcrição, sentimento, probabilidade de dispneia), *Vídeo* (player, quadros anotados, eventos), *Auditoria*.
+Abre em `http://localhost:8501`. Escolha o paciente na barra lateral e clique **Rodar fluxo completo** (10–15 s). Abas: _Alertas_, _Sinais vitais_ (com botão **Simular stream** que mostra o alerta surgindo conforme os dados chegam), _Áudio_ (player, transcrição, sentimento, probabilidade de dispneia), _Vídeo_ (player, quadros anotados, eventos), _Auditoria_.
 
 ### 3.3 Apenas o fluxo de fusão
 
@@ -140,24 +140,24 @@ python -m src.fusion.monitoring_flow --paciente-id PAC-004 [--sem-audio] [--sem-
 
 ### 3.4 Pacientes disponíveis
 
-| ID | Cenário | O que esperar |
-|---|---|---|
+| ID          | Cenário                                                   | O que esperar de resultado                                     |
+| ----------- | --------------------------------------------------------- | -------------------------------------------------------------- |
 | **PAC-003** | Insuficiência cardíaca descompensada — **caso principal** | score 100, crítico: vitais + prescrição + áudio apontam juntos |
-| **PAC-004** | Queda no quarto | score 60, crítico: queda detectada no vídeo aos 2,6 s |
-| PAC-001 | Dor torácica | alto: dispneia na fala, pico de FC, medicamento novo |
-| PAC-002 | Sepse | alto: PA cai, antibiótico trocado |
-| **PAC-005** | Idoso estável (controle) | **score 0, nenhum alerta** |
+| **PAC-004** | Queda no quarto                                           | score 60, crítico: queda detectada no vídeo aos 2,6 s          |
+| PAC-001     | Dor torácica                                              | alto: dispneia na fala, pico de FC, medicamento novo           |
+| PAC-002     | Sepse                                                     | alto: PA cai, antibiótico trocado                              |
+| **PAC-005** | Idoso estável (controle)                                  | **score 0, nenhum alerta**                                     |
 
 Pacientes são fictícios; as mídias associadas vêm dos datasets públicos acima.
 
 ### 3.5 Onde ficam as saídas
 
-| Arquivo | Conteúdo |
-|---|---|
+| Arquivo                                         | Conteúdo                                                                                  |
+| ----------------------------------------------- | ----------------------------------------------------------------------------------------- |
 | `outputs/alerts/monitoramento_<ID>_<data>.json` | relatório consolidado: score, nível, alertas por modalidade, resumo de áudio/vídeo/vitais |
-| `outputs/reports/video_<ID>_<data>.pdf` | relatório automático de vídeo com linha do tempo e quadros anotados |
-| `outputs/figures/*.jpg` | quadros anotados (caixas YOLO + esqueleto) |
-| `outputs/audit_log.json` | toda chamada Azure/YOLO e todo alerta, com data, metadados e flag real/simulado |
+| `outputs/reports/video_<ID>_<data>.pdf`         | relatório automático de vídeo com linha do tempo e quadros anotados                       |
+| `outputs/figures/*.jpg`                         | quadros anotados (caixas YOLO + esqueleto)                                                |
+| `outputs/audit_log.json`                        | toda chamada Azure/YOLO e todo alerta, com data, metadados e flag real/simulado           |
 
 ### 3.6 Docker (alternativa, CPU)
 
@@ -172,11 +172,11 @@ Sobe o dashboard em `http://localhost:8501` com torch CPU. Monte `data/samples` 
 
 ## 4. Scripts auxiliares
 
-| Script | Para quê |
-|---|---|
-| `scripts/download_samples.py` | baixa BIDMC, ESC-50 e UR Fall |
-| `scripts/train_dyspnea_model.py` | retreina o modelo de dispneia no SPIRA e gera as curvas ROC (requer SPIRA) |
-| `scripts/gerar_figuras_relatorio.py` | regenera todas as figuras usadas no relatório técnico |
+| Script                               | Para quê                                                                   |
+| ------------------------------------ | -------------------------------------------------------------------------- |
+| `scripts/download_samples.py`        | baixa BIDMC, ESC-50 e UR Fall                                              |
+| `scripts/train_dyspnea_model.py`     | retreina o modelo de dispneia no SPIRA e gera as curvas ROC (requer SPIRA) |
+| `scripts/gerar_figuras_relatorio.py` | regenera todas as figuras usadas no relatório técnico                      |
 
 ## 5. Testes e integração contínua
 
@@ -203,16 +203,12 @@ docs/                              relatório técnico · diagramas · figuras �
 
 ## 7. Solução de problemas
 
-| Sintoma | Causa provável | Solução |
-|---|---|---|
-| `torch.cuda.is_available()` é `False` com GPU NVIDIA | torch CPU instalado pelo `requirements.txt` | `pip install --force-reinstall --no-deps torch torchvision --index-url https://download.pytorch.org/whl/cu124` |
-| Acentos quebrados no terminal | console em cp1252 | `chcp 65001` e `$env:PYTHONIOENCODING="utf-8"` |
-| `[Language] 401 Access denied` | endpoint regional genérico no `.env` | use o endpoint personalizado `https://<recurso>.cognitiveservices.azure.com/` |
-| Azure Speech `SPXERR_INVALID_HEADER` | arquivo não é WAV PCM | o cliente converte automaticamente; se persistir, verifique se `librosa`/`soundfile` estão instalados |
-| Vídeo não toca no dashboard | MP4 em codec `mp4v` | `scripts/download_samples.py` já gera H.264; para vídeos próprios, reencode com ffmpeg (`-c:v libx264 -pix_fmt yuv420p`) |
-| Paciente sem etapa de áudio | SPIRA/Common Voice não baixados | ver seção 2.4; o fluxo continua e registra o aviso em `erros` |
-| Primeira execução lenta (~6 s no primeiro quadro) | download dos pesos `yolov8n.pt` e `yolov8n-pose.pt` e aquecimento da GPU | normal; pesos ficam em `models/` |
-
-## Aviso
-
-Sistema acadêmico com pacientes fictícios e amostras públicas. Não é dispositivo médico. Nenhuma saída deve ser usada para decisão clínica sem validação de um profissional de saúde.
+| Sintoma                                              | Causa provável                                                           | Solução                                                                                                                  |
+| ---------------------------------------------------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| `torch.cuda.is_available()` é `False` com GPU NVIDIA | torch CPU instalado pelo `requirements.txt`                              | `pip install --force-reinstall --no-deps torch torchvision --index-url https://download.pytorch.org/whl/cu124`           |
+| Acentos quebrados no terminal                        | console em cp1252                                                        | `chcp 65001` e `$env:PYTHONIOENCODING="utf-8"`                                                                           |
+| `[Language] 401 Access denied`                       | endpoint regional genérico no `.env`                                     | use o endpoint personalizado `https://<recurso>.cognitiveservices.azure.com/`                                            |
+| Azure Speech `SPXERR_INVALID_HEADER`                 | arquivo não é WAV PCM                                                    | o cliente converte automaticamente; se persistir, verifique se `librosa`/`soundfile` estão instalados                    |
+| Vídeo não toca no dashboard                          | MP4 em codec `mp4v`                                                      | `scripts/download_samples.py` já gera H.264; para vídeos próprios, reencode com ffmpeg (`-c:v libx264 -pix_fmt yuv420p`) |
+| Paciente sem etapa de áudio                          | SPIRA/Common Voice não baixados                                          | ver seção 2.4; o fluxo continua e registra o aviso em `erros`                                                            |
+| Primeira execução lenta (~6 s no primeiro quadro)    | download dos pesos `yolov8n.pt` e `yolov8n-pose.pt` e aquecimento da GPU | normal; pesos ficam em `models/`                                                                                         |
