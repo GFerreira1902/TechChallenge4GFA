@@ -77,7 +77,7 @@ alerta é emitido se score ≥ 30 OU existe alerta crítico
 ```mermaid
 flowchart LR
     X[texto de alerta / relatório] --> G{enforce_human_validation}
-    G -->|detecta "tome", "administre", "prescrevo"...| W[aviso de segurança registrado]
+    G -->|"detecta 'tome', 'administre', 'prescrevo'..."| W[aviso de segurança registrado]
     G --> D[anexa disclaimer de validação humana]
     D --> L[(AuditLogger)]
 ```

@@ -138,7 +138,7 @@ src/
 ├── guardrails/          audit_logger · safety_rules
 ├── langchain_pipeline/  patient_records · llm_client (opcional)
 └── demo.py
-scripts/   download_samples · train_dyspnea_model
+scripts/   download_samples · train_dyspnea_model · gerar_figuras_relatorio
 tests/     59 testes pytest
 docs/      relatório técnico · diagrama · figuras
 ```
