@@ -84,9 +84,15 @@ def carregar_auditoria(path: str = "outputs/audit_log.json", n: int = 20) -> pd.
     with open(path, encoding="utf-8") as f:
         log = json.load(f)
     rows = [{"timestamp": e["timestamp"][:19], "evento": e["prompt"][:80],
-             "tipo": e["metadata"].get("tipo") or e["metadata"].get("service", ""),
-             "simulado": e["metadata"].get("simulated", "")} for e in log[-n:]]
+             "tipo": str(e["metadata"].get("tipo") or e["metadata"].get("service") or ""),
+             "simulado": _flag_simulado(e["metadata"].get("simulated"))} for e in log[-n:]]
     return pd.DataFrame(rows[::-1])
+
+
+def _flag_simulado(v) -> str:
+    if v is None:
+        return "-"
+    return "sim" if v else "nao"
 
 
 def ultimo_relatorio(paciente_id: str, pasta: str = "outputs/alerts") -> dict | None:
