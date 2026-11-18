@@ -1,8 +1,9 @@
 # Relatório Técnico — Monitoramento Multimodal de Pacientes
 
 **Tech Challenge Fase 4 — Pós-graduação IA para Devs (FIAP)**
-Guilherme Ferreira de Arruda — RM 373210 — Grupo 88 (projeto individual)
+Guilherme Ferreira de Arruda — RM 373210 — Grupo 47 (projeto individual)
 Repositório: https://github.com/GFerreira1902/TechChallenge4GFA
+Vídeo de demonstração: https://youtu.be/gcieGLWFtVA
 
 ---
 

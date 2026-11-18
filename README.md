@@ -3,16 +3,15 @@
 [![Testes](https://github.com/GFerreira1902/TechChallenge4GFA/actions/workflows/tests.yml/badge.svg)](https://github.com/GFerreira1902/TechChallenge4GFA/actions/workflows/tests.yml)
 
 **Tech Challenge — Fase 4 · Pós-graduação IA para Devs (FIAP)**
-Guilherme Ferreira de Arruda · RM 373210 · Grupo 88
+Guilherme Ferreira de Arruda · RM 373210 · Grupo 47
 
 Protótipo de um sistema hospitalar que acompanha pacientes internados combinando **vídeo** (câmera do quarto ou sessão de fisioterapia), **voz** (gravações de consulta) e **dados clínicos** (sinais vitais e prescrições). Cada fonte é analisada por um modelo específico; as evidências são fundidas em um **score de risco** e, quando necessário, um **alerta é emitido para a equipe médica** — sempre com aviso de validação humana e registro de auditoria.
 
 | Entregável                                                 | Onde                                                   |
 | ---------------------------------------------------------- | ------------------------------------------------------ |
-| Código-fonte                                               | este repositório                                       |
 | Relatório técnico (fluxo, modelos, resultados, limitações) | [docs/relatorio_tecnico.md](docs/relatorio_tecnico.md) |
 | Diagramas do fluxo multimodal                              | [docs/diagrama_fluxo.md](docs/diagrama_fluxo.md)       |
-| Vídeo de demonstração (≤ 15 min)                           | _link será adicionado na entrega_                      |
+| Vídeo de demonstração (YouTube)                            | https://youtu.be/gcieGLWFtVA                           |
 
 ---
 
